@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'TODO-APP'`, () => {
+  it(`should have as title 'todo-app-client'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('TODO-APP');
+    expect(app.title).toEqual('todo-app-client');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('TODO-APP app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('todo-app-client app is running!');
   });
 });

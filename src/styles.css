@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #fcfdec  !important;
+}
+
+.bg-white{
+    background-color: #fff;
+}
+h1.todo-h2 {
+    width: auto;
+    margin: 26px auto;
+    border: solid 5px #fff;
+    display: table;
+    margin: 12p;
+    padding: 5px 51px;
+    font-size: 23px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px #000;
+    background: #e6f3eb;
+    line-height: 23px;
+}
