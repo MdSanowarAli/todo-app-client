@@ -1,6 +1,7 @@
 export class TodoModel {
     id: number;
-    date: Date;
+    startDate: Date;
+    endDate: Date;
     itemName: string;
     description: string;
     

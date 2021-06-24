@@ -37,40 +37,55 @@ export class TodoAddOrEditComponent implements OnInit {
   }
 
   save(): void {
-    this.todoObj.date = moment(new Date(this.todoObj.date)).toDate();
-    this.todoService.onSaveItem(this.todoObj).subscribe(
-      res => {
-        if (res.success) {
-          this.toastr.success('', res.message);
+    this.todoObj.startDate = moment(new Date(this.todoObj.startDate)).toDate();
+    this.todoObj.endDate = moment(new Date(this.todoObj.endDate)).toDate();
+    if (this.todoObj.startDate != null && this.todoObj.endDate != null && this.todoObj.itemName != null) {
+      this.todoService.onSaveItem(this.todoObj).subscribe(
+        res => {
+          if (res.success) {
+            this.toastr.success('', res.message);
+            this.bsModalRef.hide();
+            this.onClose.next(true);
+          } else {
+            this.toastr.warning('', res.message);
+            this.onClose.next(true);
+          }
+        }, err => {
+          console.error('Error occured when save ', err);
+          this.toastr.error('Error occured when save', err.message);
           this.bsModalRef.hide();
           this.onClose.next(true);
-        } else {
-          this.toastr.warning('', res.message);
-          this.onClose.next(true);
         }
-      }, err => {
-        console.error('Error occured when save ', err);
-        this.toastr.error('', err.message);
-      }
-    );
+      );
+    } else {
+      this.toastr.warning('', "Please Insert Data to All Mendatory Field's...");
+    }
+
   }
 
   update(): void {
-    this.todoObj.date = moment(new Date(this.todoObj.date)).toDate();
-    this.todoService.onUpdateItem(this.todoObj).subscribe(
-      res => {
-        if (res.success) {
-          this.toastr.success('', res.message);
+    // this.todoObj.startDate = moment(new Date(this.todoObj.startDate)).toDate();
+    // this.todoObj.endDate = moment(new Date(this.todoObj.endDate)).toDate();
+    if (this.todoObj.startDate != null && this.todoObj.endDate != null && this.todoObj.itemName != null) {
+      this.todoService.onUpdateItem(this.todoObj).subscribe(
+        res => {
+          if (res.success) {
+            this.toastr.success('', res.message);
+            this.bsModalRef.hide();
+            this.onClose.next(true);
+          } else {
+            this.toastr.warning('', res.message);
+            this.onClose.next(false);
+          }
+        }, err => {
+          console.error('Error occured when Update', err);
+          this.toastr.error('Error occured when Update', err.message);
           this.bsModalRef.hide();
           this.onClose.next(true);
-        } else {
-          this.toastr.warning('', res.message);
-          this.onClose.next(false);
         }
-      }, err => {
-        console.error('Error occured when Update', err);
-        this.toastr.error('', err.message);
-      }
-    );
+      );
+    } else {
+      this.toastr.warning('', "Please Insert Data to All Mendatory Field's...");
+    }
   }
 }
